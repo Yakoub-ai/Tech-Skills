@@ -68,9 +68,10 @@
 
 ### Infrastructure (Lead: @orchestrator)
 
-| Role            | Expertise                | When to Invoke  |
-| --------------- | ------------------------ | --------------- |
-| **MCP Manager** | Server lifecycle, Tokens | Tool management |
+| Role                     | Expertise                          | When to Invoke                    |
+| ------------------------ | ---------------------------------- | --------------------------------- |
+| **MCP Manager**          | Server lifecycle, Tokens           | Tool management                   |
+| **Brainstorm Architect** | Solution discovery, Architecture   | Architecture decisions, project strategy, "what should I use?" |
 
 ---
 
@@ -106,6 +107,9 @@ Product_keywords: requirements, UX, design → Product Designer
   test, QA, automation → QA Engineer
   docs, documentation → Technical Writer
   meeting, strategy, status, sync → Strategic Coordinator
+
+Orchestrator_keywords: brainstorm, architecture, solution, design → Brainstorm Architect
+  "best way to", "what should I use", compare, tradeoff → Brainstorm Architect
 ```
 
 ---

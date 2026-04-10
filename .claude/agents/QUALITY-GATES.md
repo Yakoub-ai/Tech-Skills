@@ -74,6 +74,22 @@ Every agent must verify their work against these quality gates before reporting 
 - [ ] Error responses standardized
 - [ ] Database queries optimized (db-01)
 
+### Gate 5: State Integrity (Multi-Session Tasks)
+
+When the orchestrator is managing multi-session work via `.claude/state/`:
+
+- [ ] ROADMAP.md reflects current project status accurately
+- [ ] CHECKPOINT.md file hashes match actual files on disk
+- [ ] All decisions in ROADMAP.md decisions log marked "Still Valid" or re-evaluated
+- [ ] HANDOFF.md contains sufficient context for a fresh agent to resume work
+- [ ] No stale file references (paths that were moved, renamed, or deleted)
+- [ ] Test suite passes after session resumption (no regressions from drift)
+- [ ] SESSION.md activity log is complete for the current session
+
+Reference: `.claude/agents/SESSION-PROTOCOL.md` for the full state management protocol.
+
+---
+
 ## Mandatory Collaboration Verification
 
 Before marking any task complete, verify these collaborations were satisfied:
