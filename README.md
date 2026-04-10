@@ -10,7 +10,16 @@ Features a **hierarchical multi-agent system** with a **Brainstorm → Plan → 
 
 ## Quick Install
 
-### For Claude Code (CLI)
+### From GitHub (Recommended)
+
+```bash
+git clone https://github.com/6ogo/Tech-Skills.git
+cd Tech-Skills
+```
+
+The `CLAUDE.md` file bootstraps the entire agent system automatically when Claude Code opens the project. All 200+ skills, 31 agents, and 6 slash commands are immediately available.
+
+### Via NPM
 
 ```bash
 npx tech-hub-skills install
@@ -24,55 +33,80 @@ npx tech-hub-skills install --copilot
 
 _This creates `.github/copilot-instructions.md` with all expert skills._
 
+### Add to Existing Project
+
+Copy the `.claude/` directory into your project root:
+
+```bash
+# From the Tech-Skills repo
+cp -r .claude/ /path/to/your/project/.claude/
+cp CLAUDE.md /path/to/your/project/CLAUDE.md
+```
+
+The `CLAUDE.md` and `.claude/` directory together provide the complete agent system. No other configuration needed.
+
 ---
 
-## v2.3: Hierarchical Agent Architecture & Unified Skills
+## v3.0: Agent Orchestration Framework
 
-**95% token reduction** with on-demand skill loading and intelligent coordination.
+**What's new in v3.0:**
+
+- **CLAUDE.md bootstrap** — System activates automatically when Claude Code opens the project
+- **Context-first protocol** — Agents explore and understand your project before making changes
+- **Real agent execution** — Agents use Claude Code's native Agent tool for true subagent spawning
+- **Parallel execution** — Independent tasks run simultaneously for faster completion
+- **Quality gate enforcement** — Mandatory verification before any task is marked complete
+- **User communication protocol** — Agents ask the right questions at the right time
+- **Feedback loops** — Results are validated and iterated on if quality gates fail
+- **marketplace.json** — Easy discovery and installation metadata
 
 ### Multi-Agent Hierarchy
 
-1.  **Orchestrator Agent** (visible) - The master coordinator. Analyzes requests, brainstorms approaches, and creates execution plans.
-2.  **5 Lead Agents** (visible) - Domain experts for AI/ML, Platform, Security, Data, and Product development.
-3.  **25 Specialist Agents** (internal) - Deep technical specialists (e.g., AI Engineer, MLOps, SRE) loaded dynamically by Leads.
+```
+User Request
+    |
+Orchestrator (analyzes, plans, coordinates)
+    |
+5 Lead Agents (AI/ML, Platform, Security, Data, Product)
+    |
+25+ Specialist Agents (each with 5-13 skills, loaded on-demand)
+    |
+200+ Skills (expert guidance loaded from skill-docs/)
+```
 
 ### Workflow: Brainstorm → Plan → Implement
 
-- **Brainstorm**: Understands requirements, constraints, and risks BEFORE acting.
-- **Plan**: Scans registries to select ONLY the needed skills (typically 3-7 per task).
-- **Implement**: Executes step-by-step with validation checkpoints and adaptive planning.
+1. **Brainstorm**: Explores the project, understands requirements, identifies constraints and risks, asks clarifying questions
+2. **Plan**: Scans skill registries, selects minimum specialists (3-7), defines milestones, presents plan for approval
+3. **Implement**: Spawns agents with full context, executes in parallel where possible, validates quality gates, synthesizes results
 
 ---
 
-## What's Included
-
-- **200+ Skills**: LLMs, RAG, MLOps, DevSecOps, Lakehouse, Cloud (AWS/Azure/GCP), and more.
-- **Lazy-Loading**: Significant token savings via internal skill registries.
-- **Security First**: Built-in PII detection, security hardening, and compliance automation.
-- **Safety Guardrails**: File deletion protection, database safety, credential protection, automatic backups, and audit logging.
-- **Cost Aware**: AI/ML cost optimization and efficient tool usage.
-
 ## Usage
 
-### Claude Code - Slash Commands
-
-Route directly to the master coordinator or domain leads:
+### Slash Commands
 
 ```bash
-# Recommended entry point (Full Workflow)
-/orchestrator "Build a customer churn prediction model"
+/orchestrator "Build a customer churn prediction model"   # Full workflow
+/ai "Create a RAG chatbot"                                # AI/ML tasks
+/platform "Deploy to Kubernetes with CI/CD"               # DevOps/cloud
+/security "Scan for PII and vulnerabilities"              # Security
+/data "Build ETL pipeline with quality checks"            # Data engineering
+/product "Create user registration with tests"            # Full-stack dev
+```
 
-# Domain specific
-/ai       # AI, ML, and Data Science
-/platform # DevOps and Cloud Infrastructure
-/security # Security and Compliance
-/data     # Data Engineering
-/product  # Full-stack Development
+### Natural Language
+
+Just describe what you need — the orchestrator automatically activates, analyzes keywords, and routes to the right agents:
+
+```
+"Build a REST API with authentication, rate limiting, and monitoring"
+→ Orchestrator → Product Lead (backend) + Security Lead (auth) + Platform Lead (monitoring)
 ```
 
 ### GitHub Copilot
 
-Copilot automatically applies expert knowledge via instructions. Reference roles in comments to steer:
+Reference roles in comments to steer Copilot:
 
 ```python
 # Using AI Engineer approach for RAG pipeline
@@ -84,21 +118,61 @@ def handle_user_upload(file_data):
     pass
 ```
 
-## Available Lead Roles
+---
 
-| Lead              | Domain                 | Specialists                                               |
-| ----------------- | ---------------------- | --------------------------------------------------------- |
-| **AI/ML Lead**    | AI, ML, Data Science   | AI Engineer, ML Engineer, Data Scientist, MLOps           |
-| **Platform Lead** | Infrastructure, DevOps | DevOps, SRE, Platform Eng, Network, Docker, Cloud, FinOps |
-| **Security Lead** | Security, Compliance   | Security Architect, Compliance Officer, Security Hardener |
-| **Data Lead**     | Data Engineering       | Data Engineer, Data Governance, Database Admin            |
-| **Product Lead**  | Product Development    | Product Designer, Frontend/Backend Dev, QA, Tech Writer   |
+## Available Roles
+
+| Lead | Domain | Specialists | Skills |
+|------|--------|------------|--------|
+| **AI/ML Lead** | AI, ML, Data Science | AI Engineer, ML Engineer, Data Scientist, MLOps | 39 |
+| **Platform Lead** | Infrastructure, DevOps | DevOps, SRE, Platform Eng, Network, Docker, AWS/Azure/GCP, FinOps | 83 |
+| **Security Lead** | Security, Compliance | Security Architect, Compliance Officer, Security Hardener | 23 |
+| **Data Lead** | Data Engineering | Data Engineer, Data Governance, Database Admin | 26 |
+| **Product Lead** | Product Development | Product Designer, Frontend/Backend Dev, QA, Tech Writer | 38 |
+
+## Key Features
+
+- **200+ Skills** across LLMs, RAG, MLOps, DevSecOps, Lakehouse, Cloud (AWS/Azure/GCP), and more
+- **95% Token Efficiency** via lazy-loading skill registries — only loads what's needed
+- **Context-First** — Agents analyze your project structure, tech stack, and conventions before acting
+- **Security First** — Built-in PII detection, security hardening, and compliance automation
+- **Quality Gates** — Mandatory verification including tests, linting, and security checks
+- **Safety Guardrails** — File deletion protection, database safety, credential protection, audit logging
+- **Parallel Execution** — Independent agents work simultaneously for faster task completion
+- **Works on Any Project** — Agents adapt to your existing conventions, no configuration needed
+
+## Project Structure
+
+```
+.claude/
+  agents/                    # Agent definitions (orchestrator, leads, specialists)
+    orchestrator-agent.md    # Master coordinator
+    ai-ml-lead.md           # AI/ML domain lead
+    platform-lead.md        # Platform/DevOps lead
+    security-lead.md        # Security/compliance lead
+    data-lead.md            # Data engineering lead
+    product-lead.md         # Product development lead
+    specialists/            # 25+ specialist agents
+    EXECUTION.md            # How agents coordinate
+    SKILL-REGISTRY.md       # Skill keyword index
+    ROLE-REGISTRY.md        # Role summary index
+    QUALITY-GATES.md        # Verification checklist
+    CONTEXT-PROTOCOL.md     # Project analysis protocol
+    USER-PROTOCOL.md        # User communication rules
+  commands/                 # Slash command definitions
+  skill-docs/               # Expert guidance (loaded on-demand)
+  roles/                    # Detailed skill implementations
+  hooks/                    # Safety guardrails
+  settings.json             # System configuration
+CLAUDE.md                   # Auto-loaded bootstrap
+marketplace.json            # Installation metadata
+```
 
 ## Documentation
 
-- **Full System**: [AGENTS.md](https://github.com/6ogo/Tech-Skills/blob/main/.claude/AGENTS.md)
+- **Architecture**: [AGENTS.md](https://github.com/6ogo/Tech-Skills/blob/main/.claude/AGENTS.md)
 - **Safety Guardrails**: [SAFETY-GUARDRAILS.md](https://github.com/6ogo/Tech-Skills/blob/main/SAFETY-GUARDRAILS.md)
-- **GitHub Copilot Guide**: [GITHUB_COPILOT.md](https://github.com/6ogo/Tech-Skills/blob/main/GITHUB_COPILOT.md)
+- **GitHub Copilot**: [GITHUB_COPILOT.md](https://github.com/6ogo/Tech-Skills/blob/main/GITHUB_COPILOT.md)
 - **Changelog**: [CHANGELOG.md](https://github.com/6ogo/Tech-Skills/blob/main/CHANGELOG.md)
 
 ## License

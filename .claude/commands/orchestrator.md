@@ -1,6 +1,6 @@
 # Tech Hub Orchestrator Command
 
-Invoke the Tech Hub Orchestrator to analyze your request and load the appropriate skills on-demand.
+Invoke the Tech Hub Orchestrator to analyze your request and coordinate the right agents and skills.
 
 ## Usage
 
@@ -10,25 +10,30 @@ Invoke the Tech Hub Orchestrator to analyze your request and load the appropriat
 
 ## What This Command Does
 
-1. **Analyzes** your request to identify domains, complexity, and requirements
-2. **Selects** optimal skills from 200+ available across 31+ roles
-3. **Loads** only the specific skill documentation needed (saving context)
-4. **Executes** with loaded guidance
+1. **Explores** your project to understand structure, tech stack, and conventions
+2. **Analyzes** your request to identify domains, complexity, and requirements
+3. **Selects** optimal skills from 200+ available across 31 agents
+4. **Plans** the implementation with milestones and presents for approval
+5. **Executes** by spawning lead agents with full context, in parallel where possible
+6. **Validates** results against quality gates before reporting completion
 
-## Example
+## Examples
 
 ```
 /orchestrator Build a RAG chatbot for internal knowledge base
+/orchestrator Create CI/CD pipeline with security scanning
+/orchestrator Implement data pipeline with quality checks
+/orchestrator Build full-stack app with authentication
 ```
-
-This will:
-1. Load `skill-docs/ai-engineer.md` (RAG, prompts, guardrails)
-2. Load `skill-docs/security-architect.md` (PII detection)
-3. Load `skill-docs/devops.md` (deployment)
-4. Execute the implementation with full guidance
 
 ## How It Works
 
-The orchestrator references `.claude/skills-index.md` to match your request keywords to skill IDs, then uses the Read tool to load only the needed skill files from `.claude/skill-docs/`.
+The orchestrator follows the **Brainstorm → Plan → Implement** workflow:
 
-This keeps your context lean while giving you access to the full 200+ skill library.
+1. Scans `.claude/agents/SKILL-REGISTRY.md` to match keywords to skill IDs
+2. Loads expert guidance from `.claude/skill-docs/` for selected roles
+3. Spawns lead agents (AI/ML, Platform, Security, Data, Product) as needed
+4. Leads coordinate specialists for deep technical execution
+5. Quality gates are verified before completion
+
+Full definition: `.claude/agents/orchestrator-agent.md`

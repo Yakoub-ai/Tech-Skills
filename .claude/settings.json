@@ -1,19 +1,22 @@
 {
   "name": "Tech Hub Skills",
-  "description": "200+ production-ready AI agent skills for software engineering",
-  "version": "2.2.3",
+  "description": "200+ production-ready AI agent skills with hierarchical multi-agent orchestration",
+  "version": "3.0.0",
   "agent_system": {
     "enabled": true,
     "orchestrator": ".claude/agents/orchestrator-agent.md",
     "execution_protocol": ".claude/agents/EXECUTION.md",
-    "skill_reference": ".claude/agents/SKILL-REFERENCE.md"
+    "skill_reference": ".claude/agents/SKILL-REFERENCE.md",
+    "quality_gates": ".claude/agents/QUALITY-GATES.md",
+    "user_protocol": ".claude/agents/USER-PROTOCOL.md",
+    "context_protocol": ".claude/agents/CONTEXT-PROTOCOL.md"
   },
   "commands": {
     "prefix": "/",
     "available": [
       {
         "name": "orchestrator",
-        "description": "Analyze project and coordinate agents",
+        "description": "Full analysis, planning, and multi-domain coordination",
         "file": ".claude/commands/orchestrator.md"
       },
       {
@@ -43,11 +46,31 @@
       }
     ]
   },
-  "skills_directory": ".claude/skills",
-  "roles_directory": ".claude/roles",
-  "agents_directory": ".claude/agents",
+  "directories": {
+    "agents": ".claude/agents",
+    "specialists": ".claude/agents/specialists",
+    "skills": ".claude/skills",
+    "skill_docs": ".claude/skill-docs",
+    "roles": ".claude/roles",
+    "commands": ".claude/commands",
+    "hooks": ".claude/hooks",
+    "templates": ".claude/templates"
+  },
+  "registries": {
+    "skills": ".claude/agents/SKILL-REGISTRY.md",
+    "roles": ".claude/agents/ROLE-REGISTRY.md",
+    "reference": ".claude/agents/SKILL-REFERENCE.md"
+  },
+  "protocols": {
+    "execution": ".claude/agents/EXECUTION.md",
+    "context": ".claude/agents/CONTEXT-PROTOCOL.md",
+    "user_communication": ".claude/agents/USER-PROTOCOL.md",
+    "quality": ".claude/agents/QUALITY-GATES.md",
+    "agent_schema": ".claude/agents/agent-schema.md"
+  },
   "documentation": {
     "main": ".claude/README.md",
-    "agents": ".claude/AGENTS.md"
+    "agents": ".claude/AGENTS.md",
+    "quickstart": ".claude/QUICKSTART.md"
   }
 }
