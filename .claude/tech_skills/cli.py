@@ -178,18 +178,18 @@ def main() -> None:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  tech-hub-skills install                  Install to current project (Claude Code)
-  tech-hub-skills install --copilot        Install with GitHub Copilot integration
-  tech-hub-skills install --global         Install globally
-  tech-hub-skills init --enterprise        Enterprise mode setup
-  tech-hub-skills list                     List all roles
+  tech-skills install                  Install to current project (Claude Code)
+  tech-skills install --copilot        Install with GitHub Copilot integration
+  tech-skills install --global         Install globally
+  tech-skills init --enterprise        Enterprise mode setup
+  tech-skills list                     List all roles
         """
     )
 
     parser.add_argument(
         "--version", "-v",
         action="version",
-        version=f"tech-hub-skills {__version__}"
+        version=f"tech-skills {__version__}"
     )
 
     subparsers = parser.add_subparsers(dest="command", help="Commands")

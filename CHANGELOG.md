@@ -5,6 +5,23 @@ All notable changes to Tech Hub Skills will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-04-10
+
+### Major Move & Rebranding
+
+This release marks the transition of the project to the **yakoub-ai** organization and a simplified rename to **Tech Skills**.
+
+- **Organization Change**: Migration from `6ogo` to `yakoub-ai`.
+- **Project Rename**: Project and package now officially named `tech-skills`.
+- **Simplified Installation**: 
+  - Primary installation is now directly via GitHub for both Claude Code and GitHub Copilot.
+  - Eliminated the requirement for manual repository cloning for standard setups.
+  - Added new `/plugin` marketplace commands for seamless Claude Code integration.
+- **CI/CD Pipeline**: Added automated GitHub Release pipeline and version bumping scripts.
+- **Documentation Overhaul**: Complete update of all guides to reflect the new org, project name, and installation paths.
+
+---
+
 ## [2.3.1] - 2026-01-11
 
 ### Changed
@@ -288,7 +305,7 @@ No action required. The new architecture is backward compatible:
 
 ```bash
 # Install/update
-npx tech-hub-skills install
+npx tech-skills install
 
 # Use orchestrator (recommended)
 /orchestrator "Build a customer churn prediction model"
@@ -425,7 +442,7 @@ This release introduces a complete **multi-agent architecture** where expert age
 **GitHub Copilot:**
 
 ```bash
-npx tech-hub-skills install --copilot
+npx tech-skills install --copilot
 ```
 
 ### Skill Count
@@ -462,12 +479,12 @@ npx tech-hub-skills install --copilot
 
 ---
 
-[2.2.0]: https://github.com/6ogo/Tech-Skills/releases/tag/v2.2.0
-[2.1.1]: https://github.com/6ogo/Tech-Skills/releases/tag/v2.1.1
-[2.1.0]: https://github.com/6ogo/Tech-Skills/releases/tag/v2.1.0
-[2.0.0]: https://github.com/6ogo/Tech-Skills/releases/tag/v2.0.0
-[1.8.1]: https://github.com/6ogo/Tech-Skills/releases/tag/v1.8.1
-[1.8.0]: https://github.com/6ogo/Tech-Skills/releases/tag/v1.8.0
-[1.7.0]: https://github.com/6ogo/Tech-Skills/releases/tag/v1.7.0
-[1.6.0]: https://github.com/6ogo/Tech-Skills/releases/tag/v1.6.0
-[1.5.0]: https://github.com/6ogo/Tech-Skills/releases/tag/v1.5.0
+[2.2.0]: https://github.com/yakoub-ai/Tech-Skills/releases/tag/v2.2.0
+[2.1.1]: https://github.com/yakoub-ai/Tech-Skills/releases/tag/v2.1.1
+[2.1.0]: https://github.com/yakoub-ai/Tech-Skills/releases/tag/v2.1.0
+[2.0.0]: https://github.com/yakoub-ai/Tech-Skills/releases/tag/v2.0.0
+[1.8.1]: https://github.com/yakoub-ai/Tech-Skills/releases/tag/v1.8.1
+[1.8.0]: https://github.com/yakoub-ai/Tech-Skills/releases/tag/v1.8.0
+[1.7.0]: https://github.com/yakoub-ai/Tech-Skills/releases/tag/v1.7.0
+[1.6.0]: https://github.com/yakoub-ai/Tech-Skills/releases/tag/v1.6.0
+[1.5.0]: https://github.com/yakoub-ai/Tech-Skills/releases/tag/v1.5.0

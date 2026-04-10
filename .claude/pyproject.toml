@@ -3,13 +3,13 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "tech-hub-skills"
+name = "tech-skills"
 version = "2.2.0"
 description = "200+ production-ready AI agent skills for Claude Code and GitHub Copilot. Agentic architecture with 93% token reduction."
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "6ogo"}
+    {name = "yakoub-ai"}
 ]
 keywords = [
     "claude",
@@ -40,15 +40,15 @@ classifiers = [
 requires-python = ">=3.9"
 
 [project.scripts]
-tech-hub-skills = "tech_hub_skills.cli:main"
+tech-skills = "tech_skills.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/6ogo/Tech-Skills"
-Repository = "https://github.com/6ogo/Tech-Skills"
+Homepage = "https://github.com/yakoub-ai/Tech-Skills"
+Repository = "https://github.com/yakoub-ai/Tech-Skills"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["tech_hub_skills*"]
+include = ["tech_skills*"]
 
 [tool.setuptools.package-data]
-tech_hub_skills = ["skills/*.md", "roles/**/*.md"]
+tech_skills = ["skills/*.md", "roles/**/*.md"]

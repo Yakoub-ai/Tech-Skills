@@ -4,16 +4,13 @@ Tech Hub Skills works with **GitHub Copilot** in VSCode, providing Copilot with 
 
 ## Quick Start
 
-```bash
-# Install with Copilot support
-npx tech-hub-skills install --copilot
+You can install the expert skills setup directly from this repository. You do **not** need to clone the repository manually.
 
-# Or with Python
-pip install tech-hub-skills
-tech-hub-skills install --copilot
+```bash
+npx yakoub-ai/Tech-Skills install --copilot
 ```
 
-This creates `.github/copilot-instructions.md` that Copilot automatically reads.
+This creates `.github/copilot-instructions.md` that Copilot automatically reads to provide expert guidance.
 
 ## Agent Architecture (v2.2.2)
 
@@ -52,8 +49,8 @@ Both tools work together seamlessly:
 ### Combined Workflow
 
 ```bash
-# 1. Install for both
-npx tech-hub-skills install --copilot
+# 1. Install for both via Github repo
+npx yakoub-ai/Tech-Skills install --copilot
 
 # 2. Use Claude Code for the high-level plan
 /orchestrator "Design a multi-cloud lakehouse architecture"
@@ -72,7 +69,7 @@ npx tech-hub-skills install --copilot
 **Want to update?**
 
 ```bash
-npx tech-hub-skills install --copilot --force
+npx yakoub-ai/Tech-Skills install --copilot --force
 ```
 
 **Remove Copilot integration only:**

@@ -293,7 +293,7 @@ function showHelp() {
   printBanner();
   console.log(`
 ${colors.bright}Usage:${colors.reset}
-  npx tech-hub-skills <command> [options]
+  npx tech-skills <command> [options]
 
 ${colors.bright}Commands:${colors.reset}
   install              Install skills to current project (Claude Code)
@@ -312,11 +312,11 @@ ${colors.bright}Options:${colors.reset}
   --enterprise, -E     Enterprise mode (for init command)
 
 ${colors.bright}Examples:${colors.reset}
-  npx tech-hub-skills install
-  npx tech-hub-skills install --copilot
-  npx tech-hub-skills install --global
-  npx tech-hub-skills init --enterprise
-  npx tech-hub-skills list
+  npx tech-skills install
+  npx tech-skills install --copilot
+  npx tech-skills install --global
+  npx tech-skills init --enterprise
+  npx tech-skills list
 
 ${colors.bright}After Installation:${colors.reset}
   Claude Code:    @orchestrator "Your project description"
@@ -356,7 +356,7 @@ switch (command) {
   case "version":
   case "--version":
   case "-v":
-    console.log(`tech-hub-skills v${VERSION}`);
+    console.log(`tech-skills v${VERSION}`);
     break;
   default:
     showHelp();

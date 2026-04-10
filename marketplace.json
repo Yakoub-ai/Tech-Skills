@@ -1,12 +1,12 @@
 {
-  "name": "tech-hub-skills",
+  "name": "tech-skills",
   "display_name": "Tech Hub Skills",
   "description": "200+ production-ready AI agent skills for Claude Code. Hierarchical multi-agent orchestration with 95% token efficiency, expert-level guidance across 31 agents and 26 domains.",
   "version": "3.0.0",
-  "author": "6ogo",
+  "author": "yakoub-ai",
   "license": "MIT",
-  "repository": "https://github.com/6ogo/Tech-Skills",
-  "homepage": "https://github.com/6ogo/Tech-Skills#readme",
+  "repository": "https://github.com/yakoub-ai/Tech-Skills",
+  "homepage": "https://github.com/yakoub-ai/Tech-Skills#readme",
   "categories": [
     "agents",
     "skills",
@@ -38,9 +38,9 @@
   ],
   "install": {
     "method": "git-clone",
-    "repository": "https://github.com/6ogo/Tech-Skills.git",
+    "repository": "https://github.com/yakoub-ai/Tech-Skills.git",
     "instructions": "Clone the repo and the .claude/ directory provides all agents, skills, and commands automatically.",
-    "quick_install": "npx tech-hub-skills install",
+    "quick_install": "npx yakoub-ai/Tech-Skills install",
     "post_install": "The CLAUDE.md file bootstraps the system automatically when Claude Code opens the project."
   },
   "compatibility": {

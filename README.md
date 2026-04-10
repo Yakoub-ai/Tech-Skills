@@ -2,48 +2,55 @@
 
 **200+ production-ready AI agent skills** for **Claude Code** and **GitHub Copilot**.
 
-[![npm version](https://img.shields.io/npm/v/tech-hub-skills.svg)](https://www.npmjs.com/package/tech-hub-skills)
-[![npm downloads](https://img.shields.io/npm/dm/tech-hub-skills.svg)](https://img.shields.io/npm/dm/tech-hub-skills.svg)
-[![License](https://img.shields.io/npm/l/tech-hub-skills.svg)](https://github.com/6ogo/Tech-Skills/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yakoub-ai/Tech-Skills/blob/main/LICENSE)
 
 Features a **hierarchical multi-agent system** with a **Brainstorm → Plan → Implement** workflow, 95% token efficiency, advanced domain expertise, and **comprehensive safety guardrails** for damage control.
 
 ## Quick Install
 
-### From GitHub (Recommended)
+You can install this system directly from GitHub. **No manual cloning is required** for the primary installation methods below.
 
+### 1. For Claude Code (Agentic Orchestration)
+
+Install the plugin directly inside Claude Code using one of these two methods:
+
+**Option A: Fast CLI (Recommended)**
+Run these commands inside your Claude Code session:
 ```bash
-git clone https://github.com/6ogo/Tech-Skills.git
-cd Tech-Skills
+/plugin marketplace add yakoub-ai/Tech-Skills
+/plugin install tech-skills@yakoub-ai
 ```
 
-The `CLAUDE.md` file bootstraps the entire agent system automatically when Claude Code opens the project. All 200+ skills, 31 agents, and 6 slash commands are immediately available.
+**Option B: Interactive Marketplace UI**
+1. Open Claude Code and type `/plugin`
+2. Go to the **Marketplaces** tab → **+ Add Marketplace**
+3. Enter the repo URL: `https://github.com/yakoub-ai/Tech-Skills`
+4. Go to the **Discover** tab → find `tech-skills` → select **Install for you**
+5. Restart Claude Code
 
-### Via NPM
+---
 
-```bash
-npx tech-hub-skills install
-```
+### 2. For GitHub Copilot (VSCode)
 
-### For GitHub Copilot (VSCode)
-
-```bash
-npx tech-hub-skills install --copilot
-```
-
-_This creates `.github/copilot-instructions.md` with all expert skills._
-
-### Add to Existing Project
-
-Copy the `.claude/` directory into your project root:
+Add expert agent skills to your project in one command. You do **not** need to clone the repository first:
 
 ```bash
-# From the Tech-Skills repo
-cp -r .claude/ /path/to/your/project/.claude/
-cp CLAUDE.md /path/to/your/project/CLAUDE.md
+npx yakoub-ai/Tech-Skills install --copilot
 ```
 
-The `CLAUDE.md` and `.claude/` directory together provide the complete agent system. No other configuration needed.
+_This creates `.github/copilot-instructions.md` that provides expert context to Copilot._
+
+---
+
+### 3. Advanced: Manual Setup
+
+If you prefer to include the agent system as part of your source code, you can clone it manually:
+
+```bash
+git clone https://github.com/yakoub-ai/Tech-Skills.git
+cp -r Tech-Skills/.claude/ /your/project/
+cp Tech-Skills/CLAUDE.md /your/project/
+```
 
 ---
 
@@ -170,10 +177,10 @@ marketplace.json            # Installation metadata
 
 ## Documentation
 
-- **Architecture**: [AGENTS.md](https://github.com/6ogo/Tech-Skills/blob/main/.claude/AGENTS.md)
-- **Safety Guardrails**: [SAFETY-GUARDRAILS.md](https://github.com/6ogo/Tech-Skills/blob/main/SAFETY-GUARDRAILS.md)
-- **GitHub Copilot**: [GITHUB_COPILOT.md](https://github.com/6ogo/Tech-Skills/blob/main/GITHUB_COPILOT.md)
-- **Changelog**: [CHANGELOG.md](https://github.com/6ogo/Tech-Skills/blob/main/CHANGELOG.md)
+- **Architecture**: [AGENTS.md](https://github.com/yakoub-ai/Tech-Skills/blob/main/.claude/AGENTS.md)
+- **Safety Guardrails**: [SAFETY-GUARDRAILS.md](https://github.com/yakoub-ai/Tech-Skills/blob/main/SAFETY-GUARDRAILS.md)
+- **GitHub Copilot**: [GITHUB_COPILOT.md](https://github.com/yakoub-ai/Tech-Skills/blob/main/GITHUB_COPILOT.md)
+- **Changelog**: [CHANGELOG.md](https://github.com/yakoub-ai/Tech-Skills/blob/main/CHANGELOG.md)
 
 ## License
 
