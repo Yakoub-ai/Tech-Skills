@@ -1,0 +1,132 @@
+{
+  "name": "tech-hub-skills",
+  "display_name": "Tech Hub Skills",
+  "description": "200+ production-ready AI agent skills for Claude Code. Hierarchical multi-agent orchestration with 95% token efficiency, expert-level guidance across 31 agents and 26 domains.",
+  "version": "3.0.0",
+  "author": "6ogo",
+  "license": "MIT",
+  "repository": "https://github.com/6ogo/Tech-Skills",
+  "homepage": "https://github.com/6ogo/Tech-Skills#readme",
+  "categories": [
+    "agents",
+    "skills",
+    "orchestration",
+    "ai-engineering",
+    "devops",
+    "security",
+    "data-engineering",
+    "full-stack"
+  ],
+  "keywords": [
+    "claude-code",
+    "ai-agents",
+    "multi-agent",
+    "orchestration",
+    "skills",
+    "llm",
+    "rag",
+    "devops",
+    "security",
+    "data-engineering",
+    "mlops",
+    "cloud",
+    "aws",
+    "azure",
+    "gcp",
+    "full-stack",
+    "enterprise"
+  ],
+  "install": {
+    "method": "git-clone",
+    "repository": "https://github.com/6ogo/Tech-Skills.git",
+    "instructions": "Clone the repo and the .claude/ directory provides all agents, skills, and commands automatically.",
+    "quick_install": "npx tech-hub-skills install",
+    "post_install": "The CLAUDE.md file bootstraps the system automatically when Claude Code opens the project."
+  },
+  "compatibility": {
+    "claude_code": ">=1.0.0",
+    "node": ">=16.0.0"
+  },
+  "components": {
+    "agents": {
+      "total": 31,
+      "orchestrator": 1,
+      "leads": 5,
+      "specialists": 25,
+      "directory": ".claude/agents/"
+    },
+    "skills": {
+      "total": "200+",
+      "directory": ".claude/skill-docs/",
+      "detailed_implementations": ".claude/roles/"
+    },
+    "commands": {
+      "total": 6,
+      "list": [
+        "/orchestrator",
+        "/ai",
+        "/platform",
+        "/security",
+        "/data",
+        "/product"
+      ],
+      "directory": ".claude/commands/"
+    },
+    "safety": {
+      "hooks": 3,
+      "guardrails": true,
+      "directory": ".claude/hooks/"
+    }
+  },
+  "agent_hierarchy": {
+    "orchestrator": {
+      "name": "Orchestrator",
+      "model": "sonnet",
+      "role": "Master coordinator - Brainstorm, Plan, Implement workflow"
+    },
+    "leads": {
+      "ai_ml": {
+        "name": "AI/ML Lead",
+        "model": "sonnet",
+        "specialists": ["AI Engineer", "ML Engineer", "Data Scientist", "MLOps Engineer"],
+        "skills_count": 39
+      },
+      "platform": {
+        "name": "Platform Lead",
+        "model": "sonnet",
+        "specialists": ["DevOps Engineer", "SRE", "Platform Engineer", "Network Engineer", "Docker Specialist", "AWS Specialist", "Azure Specialist", "GCP Specialist", "FinOps Engineer"],
+        "skills_count": 83
+      },
+      "security": {
+        "name": "Security Lead",
+        "model": "sonnet",
+        "specialists": ["Security Architect", "Compliance Officer", "Security Hardener"],
+        "skills_count": 23
+      },
+      "data": {
+        "name": "Data Lead",
+        "model": "sonnet",
+        "specialists": ["Data Engineer", "Data Governance", "Database Admin"],
+        "skills_count": 26
+      },
+      "product": {
+        "name": "Product Lead",
+        "model": "sonnet",
+        "specialists": ["Product Designer", "Frontend Developer", "Backend Developer", "QA Engineer", "Technical Writer", "Strategic Coordinator"],
+        "skills_count": 38
+      }
+    }
+  },
+  "features": [
+    "Hierarchical multi-agent orchestration (Orchestrator → Leads → Specialists)",
+    "Brainstorm → Plan → Implement workflow with user approval checkpoints",
+    "95% token efficiency through lazy-loading skill registries",
+    "Context-first protocol - agents analyze projects before acting",
+    "Mandatory collaboration enforcement (security, cost, quality)",
+    "Quality gates with automated verification",
+    "Safety guardrails with pre-tool-use hooks",
+    "Parallel execution of independent agent tasks",
+    "200+ production-ready skills across 26 domains",
+    "Works on any project - agents adapt to existing conventions"
+  ]
+}

@@ -1,126 +1,174 @@
 # Agent Definition Schema
 
-This document defines the standard structure for all agents in the Tech Hub Skills system.
+This document defines the standard structure for all agents in the Tech Hub Skills system. Every agent — lead or specialist — follows this schema.
 
-## Agent Template
+## Frontmatter (Required)
 
 ```yaml
-# Agent Definition Template
-name: "[Agent Name]"
-type: "lead" | "specialist"
-domain: "[Primary domain]"
-version: "1.0"
-
-# Agent Identity
-persona: |
-  You are [Agent Name], an expert in [domain].
-  Your role is to [primary responsibility].
-
-# Capabilities
-skills:
-  - skill_id: "xx-01"
-    name: "Skill Name"
-    auto_execute: true | false
-    approval_required: "never" | "high_risk" | "always"
-
-# Delegation Rules
-delegates_to:
-  - agent: "other-agent"
-    when: "condition for delegation"
-
-reports_to:
-  - agent: "lead-agent-name"
-
-# Collaboration
-collaborates_with:
-  - agent: "partner-agent"
-    skills: ["skill-ids"]
-    mandatory: true | false
-
-# Automation Thresholds
-automation:
-  auto_execute:
-    - "read-only analysis"
-    - "generate documentation"
-    - "code generation (new files)"
-  require_approval:
-    - "modify existing code"
-    - "security changes"
-    - "destructive operations"
-    - "production deployments"
+---
+name: "[Agent Name]"          # Must match subagent_type used to spawn this agent
+model: "sonnet" | "haiku"     # sonnet for leads, haiku for specialists
+description: "[One-line description of expertise and responsibilities]"
+---
 ```
 
-## Automation Decision Logic
+## Agent Body Structure
 
-Agents use this decision matrix to determine when to auto-execute vs. request approval:
+### For Lead Agents
+
+```markdown
+# [Agent Name] Agent
+
+[1-2 sentence role description]
+
+## Your Specialists
+[Table: Specialist | Expertise | Skills]
+
+## Activation Protocol
+
+When spawned as a subagent, follow these steps:
+
+### Step 1: Parse Context
+Read your spawn prompt to extract: project context, task description,
+constraints, skill docs to load, quality gates, report format.
+
+### Step 2: Load Expert Guidance
+Read('.claude/skill-docs/[relevant-role].md')
+Focus on the skills identified in the task.
+
+### Step 3: Plan Specialist Work
+- Identify which specialists are needed
+- Determine execution order (dependencies)
+- Group independent specialists for parallel spawning
+- Check mandatory collaborations
+
+### Step 4: Spawn Specialists
+Use the Agent tool with full context for each specialist.
+Spawn independent specialists in parallel (multiple Agent calls in one message).
+Run dependent specialists sequentially.
+
+### Step 5: Validate Results
+Check each specialist's report:
+- ARTIFACTS present?
+- QUALITY gates passed?
+- COLLABORATIONS satisfied?
+If not, iterate via SendMessage.
+
+### Step 6: Synthesize & Report
+Combine specialist results into a cohesive report for the orchestrator.
+
+## Specialist Delegation Template
+[How to spawn each specialist with proper context]
+
+## Parallel vs Sequential
+[Which specialists can run in parallel, which must be sequential]
+
+## Mandatory Collaborations
+[Required cross-domain checks with enforcement]
+
+## Skill Chains
+[Pre-defined workflows for common tasks]
+```
+
+### For Specialist Agents
+
+```markdown
+# [Agent Name] Agent
+
+[1-2 sentence role description]
+
+## Your Skills
+[Table: Skill ID | Name | Auto-Execute level]
+
+## Activation Protocol
+
+When spawned as a subagent, follow these steps:
+
+### Step 1: Parse Context
+Read your spawn prompt to extract: project context, task description,
+skill IDs to apply, constraints, quality gates, report format.
+
+### Step 2: Load Skill Documentation
+Read the skill docs specified in your prompt:
+- Read('.claude/skill-docs/[role].md') for expert guidance
+- Read('.claude/roles/[role]/skills/[skill-id]/README.md') for implementation details
+
+### Step 3: Explore Project
+Before modifying anything:
+- Read relevant existing files in the project
+- Search for existing patterns to follow (Grep, Glob)
+- Understand conventions already in use
+- Identify what can be reused
+
+### Step 4: Execute
+Apply skill knowledge to the task:
+- Follow best practices from skill docs
+- Match existing project conventions
+- Create/modify files as needed
+
+### Step 5: Verify
+Run quality checks appropriate to the project:
+- Tests pass
+- Linting clean
+- No regressions
+
+### Step 6: Report
+Return results in the format requested by parent:
+COMPLETED, ARTIFACTS, QUALITY, COLLABORATIONS, NOTES
+
+## Mandatory Collaborations
+[What this specialist must NOT skip]
+
+## Example Tasks
+[Common task patterns with skill IDs]
+```
+
+## Automation Decision Matrix
+
+Agents use this matrix to determine auto-execute vs. approval:
 
 ### Risk Assessment
 
-| Factor            | Low Risk      | Medium Risk     | High Risk            |
-| ----------------- | ------------- | --------------- | -------------------- |
-| **Scope**         | Single file   | Multiple files  | Cross-system         |
-| **Reversibility** | Easy undo     | Moderate effort | Difficult/impossible |
-| **Data Impact**   | Read-only     | Modify config   | Delete/corrupt       |
-| **Security**      | No secrets    | Access control  | Credentials/PII      |
-| **Production**    | Dev/test only | Staging         | Production           |
+| Factor | Score 0 (Low) | Score 1 (Medium) | Score 2 (High) | Score 3 (Critical) |
+|--------|--------------|-------------------|-----------------|---------------------|
+| Scope | Single file | Multiple files | Cross-module | Cross-system |
+| Reversibility | Easy undo | Moderate effort | Difficult | Impossible |
+| Data Impact | Read-only | Modify config | Modify data | Delete/corrupt |
+| Security | No secrets | Access control | Credentials | PII exposure |
+| Production | Dev/test | Staging | Production-adjacent | Production |
 
-### Action Matrix
+### Action Thresholds
 
 ```
-Risk Score = sum of risk factors (0-15)
+Risk Score = sum of all factors (0-15)
 
-Score 0-3:   Auto-execute silently
-Score 4-7:   Show plan, then execute
-Score 8-11:  Request confirmation
-Score 12+:   Require explicit approval
+Score 0-3:   Auto-execute (report what was done)
+Score 4-7:   Show plan first, then execute
+Score 8-11:  Request confirmation before proceeding
+Score 12+:   Require explicit user approval
 ```
 
-## Agent Communication Protocol
+## Communication Protocol
 
-### Request Format
+### Between Parent and Child Agents
 
-```json
-{
-  "from": "orchestrator-agent",
-  "to": "ai-ml-lead",
-  "task": "Build RAG chatbot for internal docs",
-  "context": {
-    "project_type": "new",
-    "has_pii": true,
-    "target_env": "production"
-  },
-  "urgency": "normal",
-  "approval_mode": "auto" | "confirm" | "manual"
-}
-```
+- Parent spawns child via `Agent` tool with full context in prompt
+- Child returns result to parent as tool call output
+- Parent continues child via `SendMessage` if iteration needed
+- Children NEVER communicate directly with each other
 
-### Response Format
+### Between Agent and User
 
-```json
-{
-  "from": "ai-ml-lead",
-  "status": "completed" | "needs_input" | "delegated",
-  "result": "...",
-  "delegated_to": ["ai-engineer-agent", "security-architect-agent"],
-  "artifacts": ["file paths created/modified"],
-  "recommendations": ["follow-up actions"]
-}
-```
+- Only the orchestrator (or top-level agent) talks to the user
+- Specialists report questions to their lead, leads report to orchestrator
+- Use AskUserQuestion for critical gaps, not for routine decisions
+- Follow `.claude/agents/USER-PROTOCOL.md`
 
-## Lead Agent Responsibilities
+## Quality Gate Enforcement
 
-1. **Receive tasks** from Orchestrator
-2. **Analyze complexity** and break down into sub-tasks
-3. **Select specialists** for each sub-task
-4. **Coordinate execution** across specialists
-5. **Handle cross-domain** dependencies (call other leads)
-6. **Synthesize results** and report back to Orchestrator
-7. **Escalate** when approval needed
+Every agent must verify quality gates before reporting completion. Reference `.claude/agents/QUALITY-GATES.md` for the full checklist. Key requirements:
 
-## Specialist Agent Responsibilities
-
-1. **Execute skills** within their domain
-2. **Follow anti-patterns** (never skip mandatory collaborations)
-3. **Report completion** to Lead Agent
-4. **Request help** from partner specialists when needed
-5. **Document actions** taken and artifacts created
+1. **Code quality**: Follows conventions, no linting errors, no type errors
+2. **Testing**: Existing tests pass, new tests added where appropriate
+3. **Security**: No secrets exposed, PII handled, inputs validated
+4. **Collaborations**: All mandatory cross-domain checks satisfied or flagged
