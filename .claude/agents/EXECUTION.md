@@ -278,6 +278,53 @@ Architecture Review  →  BEFORE  →  Implementation of any component
 
 ---
 
+## State Management
+
+The orchestrator maintains persistent state across sessions using files in `.claude/state/`. See `.claude/agents/SESSION-PROTOCOL.md` for the full protocol.
+
+### Checkpointing
+
+After each execution batch, the orchestrator writes `.claude/state/CHECKPOINT.md` with:
+
+1. Current batch number and execution position
+2. SHA256 file hashes for all created/modified artifacts
+3. Key decisions made during this batch (with reasoning)
+4. Next batch to execute
+5. Quality gate status (passed/pending)
+
+The orchestrator also updates `.claude/state/ROADMAP.md` milestone progress.
+
+### Context Handoff
+
+When a session ends or context needs compression:
+
+1. Synthesize all agent results into `.claude/state/HANDOFF.md`
+2. **Include**: what was done, key decisions, next steps, verification checklist
+3. **Do NOT include**: raw agent outputs, intermediate exploration results, superseded decisions
+4. Ensure a fresh agent reading only HANDOFF.md + ROADMAP.md + CHECKPOINT.md could resume
+
+### Session Resume
+
+When resuming from prior state:
+
+1. Load HANDOFF.md as primary context (replaces re-exploration)
+2. Verify CHECKPOINT.md hashes against current files (detect drift)
+3. Load ROADMAP.md for phase/milestone position
+4. Continue execution from the next pending step
+5. Report drift status to user before proceeding
+
+### State File Responsibilities
+
+| Agent Level | State Interaction |
+|-------------|-------------------|
+| Orchestrator | Reads and writes all state files |
+| Lead Agents | Do NOT interact with state files directly |
+| Specialists | Do NOT interact with state files directly |
+
+Only the orchestrator manages state. Leads and specialists report results through the normal REPORT FORMAT, and the orchestrator persists what's needed.
+
+---
+
 ## Verification Checklist
 
 Before any agent reports completion, verify:

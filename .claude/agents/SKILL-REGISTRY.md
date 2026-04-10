@@ -45,10 +45,32 @@
 
 | MCP | @orchestrator | `mcp-management.md` | mcp-01 to mcp-05 |
 | Context | @orchestrator | `context-optimization.md` | ctx-01 to ctx-06 |
+| Session | @orchestrator | `SESSION-PROTOCOL.md` | sp-01 to sp-04 |
+| Brainstorm | @orchestrator | `brainstorm-architect.md` | bs-01 to bs-04 |
 
 ---
 
 ## Keyword → Skill Mapping
+
+### Brainstorming & Architecture Keywords
+
+```yaml
+brainstorm, solution, architecture, design: → bs-01, bs-02, bs-03, bs-04
+"best way to", "what should I use": → bs-01, bs-02
+compare, tradeoff, versus, evaluate: → bs-03
+recommend, proposal, blueprint: → bs-04
+"help me think through", "figure out": → bs-01, bs-03
+```
+
+### Session & Continuity Keywords
+
+```yaml
+session, resume, continue, pick up: → sp-01 (Session Resume)
+checkpoint, save state, pause: → sp-02 (Checkpointing)
+compress, handoff, context limit: → sp-03 (Context Compression)
+drift, verify, integrity, stale: → sp-04 (Drift Detection)
+roadmap, milestones, multi-session: → sp-01, sp-02
+```
 
 ### AI & LLM Keywords
 
