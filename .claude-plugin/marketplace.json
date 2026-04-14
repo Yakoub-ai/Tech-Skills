@@ -1,5 +1,5 @@
 {
-  "name": "tech-hub-skills",
+  "name": "tech-skills",
   "owner": {
     "name": "yakoub-ai"
   },
@@ -9,7 +9,7 @@
   },
   "plugins": [
     {
-      "name": "tech-hub-skills",
+      "name": "tech-skills",
       "source": "./",
       "description": "Hierarchical multi-agent orchestration framework — Orchestrator → Leads → Specialists with Brainstorm → Plan → Implement workflow, 200+ skills across AI/ML, Platform, Security, Data, and Product domains",
       "version": "3.0.0",
