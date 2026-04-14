@@ -12,6 +12,7 @@ This project is a hierarchical multi-agent orchestration framework with **200+ p
 | `/security` | Security Lead | Security audits, compliance, PII, IAM |
 | `/data` | Data Lead | Pipelines, ETL, databases, governance |
 | `/product` | Product Lead | Features, UI, APIs, testing, documentation |
+| `/brainstorm` | Brainstorm Architect | Architecture decisions, solution discovery, project strategy |
 
 ## How the Agent System Works
 
@@ -138,6 +139,46 @@ These are ENFORCED, not optional:
 | API modifications | QA Engineer | qa-03 (Integration Tests) |
 | Data processing | Data Governance | dg-01 (Catalog), dg-02 (Lineage) |
 
+## Session Continuity & Context Management
+
+For multi-session projects, the orchestrator maintains persistent state in `.claude/state/`:
+
+| File | Purpose | When Updated |
+|------|---------|-------------|
+| `ROADMAP.md` | Task decomposition, milestones, decisions log | After each milestone |
+| `SESSION.md` | Current session activity log and decisions | During session |
+| `CHECKPOINT.md` | File SHA256 hashes and execution position | After each phase/batch |
+| `HANDOFF.md` | Compressed context for session transitions | End of session |
+
+### Autonomous Continuity Loop
+
+```
+Session Start → Check for existing ROADMAP.md
+    |
+    +-→ Fresh project: Normal orchestrator flow
+    |
+    +-→ Continuation: Load state → Verify integrity → Resume
+            |
+            v
+       Execute with checkpoints after each batch
+            |
+            v
+       Context growing large? → Compress → Report to user
+            |
+            v
+       Session end → Save state → Create handoff → Next session resumes
+```
+
+### Context Rot Prevention
+
+- **File hash verification**: SHA256 hashes in CHECKPOINT.md are recomputed on every session resume
+- **Drift detection**: Changed files are flagged, affected decisions re-evaluated
+- **Append-only decisions**: ROADMAP.md decisions log never deletes — invalidated decisions marked "Still Valid: No"
+- **Mandatory re-exploration**: Drifted files are always re-read before trusting cached analysis
+- **Test verification**: Test suite re-run after every session resume
+
+Reference: `.claude/agents/SESSION-PROTOCOL.md` for the full continuity protocol.
+
 ## Key File Locations
 
 | Purpose | Path |
@@ -146,9 +187,11 @@ These are ENFORCED, not optional:
 | Lead agents | `.claude/agents/[domain]-lead.md` |
 | Specialist agents | `.claude/agents/specialists/[name]-agent.md` |
 | Execution protocol | `.claude/agents/EXECUTION.md` |
+| Session protocol | `.claude/agents/SESSION-PROTOCOL.md` |
 | Skill registries | `.claude/agents/SKILL-REGISTRY.md`, `ROLE-REGISTRY.md` |
 | Expert guidance | `.claude/skill-docs/[role].md` |
 | Detailed skills | `.claude/roles/[role]/skills/[id]/README.md` |
 | Quality gates | `.claude/agents/QUALITY-GATES.md` |
+| Session state | `.claude/state/` |
 | Safety hooks | `.claude/hooks/` |
 | Settings | `.claude/settings.json` |

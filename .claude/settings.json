@@ -43,6 +43,11 @@
         "name": "product",
         "description": "Product development - routes to Product Lead",
         "agent": "@product-lead"
+      },
+      {
+        "name": "brainstorm",
+        "description": "Architecture decisions, solution discovery, project strategy",
+        "agent": "@brainstorm-architect"
       }
     ]
   },
@@ -54,7 +59,8 @@
     "roles": ".claude/roles",
     "commands": ".claude/commands",
     "hooks": ".claude/hooks",
-    "templates": ".claude/templates"
+    "templates": ".claude/templates",
+    "state": ".claude/state"
   },
   "registries": {
     "skills": ".claude/agents/SKILL-REGISTRY.md",
@@ -66,7 +72,8 @@
     "context": ".claude/agents/CONTEXT-PROTOCOL.md",
     "user_communication": ".claude/agents/USER-PROTOCOL.md",
     "quality": ".claude/agents/QUALITY-GATES.md",
-    "agent_schema": ".claude/agents/agent-schema.md"
+    "agent_schema": ".claude/agents/agent-schema.md",
+    "session": ".claude/agents/SESSION-PROTOCOL.md"
   },
   "documentation": {
     "main": ".claude/README.md",

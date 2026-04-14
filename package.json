@@ -1,15 +1,16 @@
 {
-  "name": "tech-hub-skills",
+  "name": "tech-skills",
   "version": "3.0.0",
   "description": "200+ production-ready AI agent skills for Claude Code and GitHub Copilot. Hierarchical multi-agent orchestration with 95% token efficiency and comprehensive safety guardrails.",
   "main": ".claude/bin/cli.js",
   "bin": {
-    "tech-hub-skills": "./.claude/bin/cli.js"
+    "tech-skills": "./.claude/bin/cli.js"
   },
   "scripts": {
     "install": "node .claude/bin/cli.js install",
     "list": "node .claude/bin/cli.js list",
-    "postinstall": "node .claude/bin/postinstall.js"
+    "postinstall": "node .claude/bin/postinstall.js",
+    "bump-version": "node scripts/bump-version.js"
   },
   "keywords": [
     "claude",
@@ -32,26 +33,24 @@
     "agentic",
     "token-optimization"
   ],
-  "author": "6ogo",
+  "author": "yakoub-ai",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/6ogo/Tech-Skills.git"
+    "url": "https://github.com/yakoub-ai/Tech-Skills.git"
   },
   "files": [
     ".claude/skills-index.md",
-    ".claude/README.md",
     ".claude/skills/**/*.md",
     ".claude/skill-docs/**/*.md",
     ".claude/roles/**/*.md",
     ".claude/commands/**/*.md",
     ".claude/agents/**/*.md",
     ".claude/templates/**/*",
-    ".claude/tech_hub_skills/**/*.md",
+    ".claude/tech_skills/**/*.md",
     ".claude/bin/**/*.js",
     ".claude/settings.json",
     ".claude/AGENTS.md",
-    ".claude/QUICKSTART.md",
     "CLAUDE.md",
     "README.md",
     "CHANGELOG.md",
@@ -62,10 +61,6 @@
   ],
   "engines": {
     "node": ">=16.0.0"
-  },
-  "homepage": "https://github.com/6ogo/Tech-Skills#readme",
-  "bugs": {
-    "url": "https://github.com/6ogo/Tech-Skills/issues"
   }
 }
 
