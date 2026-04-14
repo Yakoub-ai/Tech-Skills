@@ -1,0 +1,20 @@
+{
+  "name": "tech-hub-skills",
+  "owner": {
+    "name": "yakoub-ai"
+  },
+  "metadata": {
+    "description": "200+ production-ready AI agent skills for Claude Code. Hierarchical multi-agent orchestration with 95% token efficiency, expert guidance across 31 agents and 26 domains.",
+    "version": "3.0.0"
+  },
+  "plugins": [
+    {
+      "name": "tech-hub-skills",
+      "source": "./",
+      "description": "Hierarchical multi-agent orchestration framework — Orchestrator → Leads → Specialists with Brainstorm → Plan → Implement workflow, 200+ skills across AI/ML, Platform, Security, Data, and Product domains",
+      "version": "3.0.0",
+      "category": "agents",
+      "tags": ["agents", "skills", "orchestration", "ai-engineering", "devops", "security", "data-engineering", "full-stack", "enterprise", "mlops", "cloud"]
+    }
+  ]
+}

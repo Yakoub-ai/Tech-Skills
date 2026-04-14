@@ -1,0 +1,14 @@
+{
+  "name": "tech-hub-skills",
+  "version": "3.0.0",
+  "description": "200+ production-ready AI agent skills for Claude Code — hierarchical multi-agent orchestration with 95% token efficiency across 31 agents and 26 domains",
+  "homepage": "https://github.com/yakoub-ai/Tech-Skills",
+  "repository": "https://github.com/yakoub-ai/Tech-Skills",
+  "author": {
+    "name": "yakoub-ai"
+  },
+  "license": "MIT",
+  "keywords": ["agents", "skills", "orchestration", "ai-engineering", "devops", "security", "data-engineering", "full-stack", "enterprise"],
+  "commands": "./.claude/commands",
+  "agents": "./.claude/agents"
+}
