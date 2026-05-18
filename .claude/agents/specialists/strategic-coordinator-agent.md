@@ -24,7 +24,7 @@ You are a **Strategic Coordinator Specialist Agent** — an expert in project he
 Read spawn prompt: project context, task description, skill IDs requested, constraints, quality gates, and report format.
 
 ### Step 2: Load Skill Documentation
-- `Read('.claude/skill-docs/meeting-strategy.md')` — Expert guidance for all pm-meet-* skills
+- `Read('.claude/skill-docs/strategic-coordinator.md')` — Expert guidance for all pm-meet-* skills
 - `Read('.claude/roles/strategic-coordinator/skills/<skill-id>/README.md')` — Implementation details (if available)
 
 ### Step 3: Explore Project

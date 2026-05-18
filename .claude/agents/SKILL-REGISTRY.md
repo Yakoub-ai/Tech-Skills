@@ -41,10 +41,9 @@
 | QA           | @product-lead  | `qa-engineer.md`        | qa-01 to qa-07         |
 | Tech Writer  | @product-lead  | `technical-writer.md`   | tw-01 to tw-06         |
 | FinOps       | @platform-lead | `finops.md`             | fo-01 to fo-08         |
-| Meeting Prep | @product-lead  | `meeting-strategy.md`   | pm-meet-01 to 05       |
+| Meeting Prep | @product-lead  | `strategic-coordinator.md` | pm-meet-01 to 05       |
 
 | MCP | @orchestrator | `mcp-management.md` | mcp-01 to mcp-05 |
-| Context | @orchestrator | `context-optimization.md` | ctx-01 to ctx-06 |
 | Session | @orchestrator | `SESSION-PROTOCOL.md` | sp-01 to sp-04 |
 | Brainstorm | @orchestrator | `brainstorm-architect.md` | bs-01 to bs-04 |
 

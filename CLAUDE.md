@@ -13,6 +13,7 @@ This project is a hierarchical multi-agent orchestration framework with **200+ p
 | `/data` | Data Lead | Pipelines, ETL, databases, governance |
 | `/product` | Product Lead | Features, UI, APIs, testing, documentation |
 | `/brainstorm` | Brainstorm Architect | Architecture decisions, solution discovery, project strategy |
+| `/mcp` | MCP Manager | MCP server management, tool integration, context optimization |
 
 ## How the Agent System Works
 
