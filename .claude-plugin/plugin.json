@@ -9,14 +9,7 @@
   },
   "license": "MIT",
   "keywords": ["agents", "skills", "orchestration", "ai-engineering", "devops", "security", "data-engineering", "full-stack", "enterprise"],
-  "commands": [
-    { "name": "orchestrator", "description": "Full analysis, multi-domain tasks, complex projects" },
-    { "name": "ai", "description": "AI/ML Lead — chatbots, RAG, LLMs, ML models, predictions" },
-    { "name": "platform", "description": "Platform Lead — DevOps, CI/CD, cloud, containers, infrastructure" },
-    { "name": "security", "description": "Security Lead — security audits, compliance, PII, IAM" },
-    { "name": "data", "description": "Data Lead — pipelines, ETL, databases, governance" },
-    { "name": "product", "description": "Product Lead — features, UI, APIs, testing, documentation" },
-    { "name": "brainstorm", "description": "Brainstorm Architect — architecture decisions, solution discovery, project strategy" },
-    { "name": "mcp", "description": "MCP Manager — MCP server management, tool integration, context optimization" }
-  ]
+  "skills": "../skills/",
+  "agents": "../.claude/agents/",
+  "commands": "../.claude/commands/"
 }

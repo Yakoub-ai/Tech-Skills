@@ -40,6 +40,8 @@
     "url": "https://github.com/yakoub-ai/Tech-Skills.git"
   },
   "files": [
+    "skills/**/*",
+    ".claude-plugin/**/*",
     ".claude/skills-index.md",
     ".claude/skills/**/*.md",
     ".claude/skill-docs/**/*.md",
